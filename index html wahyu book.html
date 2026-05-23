@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Website Pemesanan Buku</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+}
+
+/* HEADER */
+
+header{
+    width:100%;
+    background:#0f172a;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    color:white;
+    font-size:28px;
+    font-weight:700;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-weight:500;
+}
+
+nav a:hover{
+    color:#38bdf8;
+}
+
+/* HERO */
+
+.hero{
+    height:85vh;
+    background:linear-gradient(rgba(15,23,42,0.8),rgba(15,23,42,0.8)),
+    url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:18px;
+    max-width:700px;
+    line-height:1.8;
+}
+
+.hero button{
+    margin-top:25px;
+    padding:14px 35px;
+    border:none;
+    border-radius:40px;
+    background:#38bdf8;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+/* JUDUL */
+
+.title{
+    text-align:center;
+    margin-top:60px;
+    font-size:38px;
+    color:#0f172a;
+}
+
+/* BUKU */
+
+.books{
+    width:100%;
+    padding:50px 8%;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    margin-bottom:10px;
+    color:#0f172a;
+}
+
+.price{
+    color:#0ea5e9;
+    font-weight:700;
+    margin:12px 0;
+    font-size:18px;
+}
+
+.add-cart{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#0f172a;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.add-cart:hover{
+    background:#1e293b;
+}
+
+/* SIGNUP */
+
+.signup{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    padding:50px 20px;
+}
+
+.signup-box{
+    width:400px;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.signup-box h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.signup-box input{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border-radius:10px;
+    border:1px solid #ccc;
+}
+
+.signup-box button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#0f172a;
+    color:white;
+    cursor:pointer;
+    font-weight:600;
+}
+
+/* KERANJANG */
+
+.cart{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#0f172a;
+    color:white;
+    padding:20px;
+    border-radius:15px;
+    width:250px;
+    z-index:999;
+}
+
+.cart h3{
+    margin-bottom:10px;
+}
+
+.cart p{
+    margin:8px 0;
+}
+
+#checkoutBtn{
+    width:100%;
+    padding:12px;
+    margin-top:12px;
+    border:none;
+    border-radius:10px;
+    background:#38bdf8;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:50px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<div class="logo">
+📚 BookStore
+</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#books">Buku</a>
+<a href="#signup">Sign Up</a>
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div>
+
+<h1>Website Pemesanan Buku</h1>
+
+<p>
+Temukan berbagai buku terbaik dengan tampilan modern dan sistem pemesanan profesional.
+</p>
+
+<button onclick="scrollBooks()">
+Lihat Buku
+</button>
+
+</div>
+
+</section>
+
+<!-- DAFTAR BUKU -->
+
+<h2 class="title" id="books">
+Daftar Buku
+</h2>
+
+<section class="books">
+
+<!-- BUKU 1 -->
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1000">
+
+<div class="card-content">
+
+<h3>Belajar HTML & CSS</h3>
+
+<p>Buku pemrograman web modern.</p>
+
+<div class="price">
+Rp 120.000
+</div>
+
+<button class="add-cart">
+Tambah ke Keranjang
+</button>
+
+</div>
+
+</div>
+
+<!-- BUKU 2 -->
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=1000">
+
+<div class="card-content">
+
+<h3>Belajar JavaScript</h3>
+
+<p>Belajar JavaScript dari dasar.</p>
+
+<div class="price">
+Rp 150.000
+</div>
+
+<button class="add-cart">
+Tambah ke Keranjang
+</button>
+
+</div>
+
+</div>
+
+<!-- BUKU 3 -->
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1000">
+
+<div class="card-content">
+
+<h3>Database MySQL</h3>
+
+<p>Belajar database profesional.</p>
+
+<div class="price">
+Rp 180.000
+</div>
+
+<button class="add-cart">
+Tambah ke Keranjang
+</button>
+
+</div>
+
+</div>
+
+<!-- BUKU 4 -->
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=1000">
+
+<div class="card-content">
+
+<h3>UI UX Design</h3>
+
+<p>Panduan desain aplikasi modern.</p>
+
+<div class="price">
+Rp 135.000
+</div>
+
+<button class="add-cart">
+Tambah ke Keranjang
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SIGNUP -->
+
+<section class="signup" id="signup">
+
+<div class="signup-box">
+
+<h2>Sign Up</h2>
+
+<input type="text" placeholder="Masukkan Username">
+
+<input type="email" placeholder="Masukkan Gmail">
+
+<input type="password" placeholder="Masukkan Password">
+
+<button onclick="signup()">
+Daftar Sekarang
+</button>
+
+</div>
+
+</section>
+
+<!-- KERANJANG -->
+
+<div class="cart">
+
+<h3>
+🛒 Keranjang
+</h3>
+
+<p>
+Jumlah Buku:
+<span id="jumlahBuku">0</span>
+</p>
+
+<p>
+Total:
+<span id="total">
+Rp 0
+</span>
+</p>
+
+<button id="checkoutBtn">
+Checkout
+</button>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+© 2026 Website Pemesanan Buku
+
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+let total = 0;
+let jumlahBuku = 0;
+
+// Tombol keranjang
+const tombolKeranjang =
+document.querySelectorAll(".add-cart");
+
+// Harga buku
+const hargaBuku = [
+120000,
+150000,
+180000,
+135000
+];
+
+// Event tambah keranjang
+tombolKeranjang.forEach((btn,index)=>{
+
+btn.addEventListener("click",function(){
+
+total += hargaBuku[index];
+
+jumlahBuku++;
+
+document.getElementById("jumlahBuku")
+.innerHTML = jumlahBuku;
+
+document.getElementById("total")
+.innerHTML =
+"Rp " + total.toLocaleString("id-ID");
+
+alert("✅ Buku berhasil ditambahkan!");
+
+});
+
+});
+
+// Tombol checkout
+document.getElementById("checkoutBtn")
+.addEventListener("click",function(){
+
+if(jumlahBuku === 0){
+
+alert("❌ Keranjang masih kosong");
+
+}else{
+
+alert(
+"✅ Checkout berhasil!\n\n" +
+"Jumlah Buku: " + jumlahBuku +
+"\nTotal Bayar: Rp " +
+total.toLocaleString("id-ID")
+);
+
+// Reset
+jumlahBuku = 0;
+total = 0;
+
+document.getElementById("jumlahBuku")
+.innerHTML = "0";
+
+document.getElementById("total")
+.innerHTML = "Rp 0";
+
+}
+
+});
+
+// Signup
+function signup(){
+
+alert("✅ Akun berhasil dibuat!");
+
+}
+
+// Scroll buku
+function scrollBooks(){
+
+document.getElementById("books")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+</script>
+
+</body>
+</html>
